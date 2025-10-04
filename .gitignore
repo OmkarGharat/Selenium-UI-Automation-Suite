@@ -1,0 +1,9 @@
+target/
+.settings/
+.project
+.classpath
+backdate_commits.ps1
+.DS_Store
+*.log
+test-output/
+bin/
