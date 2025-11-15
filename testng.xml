@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AutomationExercise Suite">
+
+	<listeners>
+		<listener class-name="listeners.TestListener"></listener>
+	</listeners>
+
+	<test name="Registration Tests">
+		<classes>
+			<class name="tests.TC01_RegisterUserTest" />
+			<class name="tests.TC05_RegisterUserExistingEmailTest" />
+		</classes>
+	</test>
+
+	<test name="Login &amp; Logout Tests">
+		<classes>
+			<class name="tests.TC02_LoginUserCorrectTest" />
+			<class name="tests.TC03_LoginUserIncorrectTest" />
+			<class name="tests.TC04_LogoutUserTest" />
+		</classes>
+	</test>
+
+	<test name="Contact Us Tests">
+		<classes>
+			<class name="tests.TC06_ContactUsTest" />
+		</classes>
+	</test>
+
+	<test name="Product Catalog &amp; review Tests">
+		<classes>
+			<class name="tests.TC08_VerifyProductsTest" />
+			<class name="tests.TC09_SearchProductTest" />
+			<class name="tests.TC19_ViewCartBrandProductsTest" />
+			<class name="tests.TC21_AddReviewOnProductTest" />
+		</classes>
+	</test>
+
+	<test name="Subscription Tests">
+		<classes>
+			<class name="tests.TC10_VerifySubscriptionTest" />
+			<class name="tests.TC11_VerifySubscriptionCartTest" />
+		</classes>
+	</test>
+
+	<test name="Cart &amp; Quantity Validation Tests">
+		<classes>
+			<class name="tests.TC12_AddProductsToCartTest" />
+			<class name="tests.TC13_VerifyProductQuantityInCartTest" />
+			<class name="tests.TC17_RemoveProductsFromCartTest" />
+			<class name="tests.TC22_AddToCartFromRecommendedItemsTest" />
+			<class name="tests.TC20_SearchProductsVerifyCartAfterLoginTest" />
+		</classes>
+	</test>
+
+	<test name="Category Navigation Tests">
+		<classes>
+			<class name="tests.TC18_ViewCategoryProductsTest" />
+		</classes>
+	</test>
+
+	<test name="Checkout, Address &amp; Order Placement Tests">
+		<classes>
+			<class name="tests.TC23_VerifyAddressInCheckoutTest" />
+			<class name="tests.TC14_PlaceOrderRegisterWhileCheckoutTest" />
+			<class name="tests.TC15_PlaceOrderRegisterBeforeCheckoutTest" />
+			<class name="tests.TC16_PlaceOrderLoginBeforeCheckoutTest" />
+			<class name="tests.TC24_DownloadInvoiceAfterPurchaseTest" />
+		</classes>
+	</test>
+
+	<test name="UI Interactivity Tests">
+		<classes>
+			<class name="tests.TC07_VerifyTestCasesPageTest" />
+			<class name="tests.TC25_VerifyScrollUpWithArrowTest" />
+			<class name="tests.TC26_VerifyScrollUpWithoutArrowTest" />
+		</classes>
+	</test>
+
+</suite>
