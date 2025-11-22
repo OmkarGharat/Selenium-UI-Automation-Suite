@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
@@ -35,7 +36,17 @@ public class BaseTest {
 
 		switch (browser.toLowerCase()) {
 		case "chrome":
-			driver = new ChromeDriver();
+			ChromeOptions chromeOptions = new ChromeOptions();
+			System.setProperty("webdriver.chrome.driver",
+					"C:\\Apps\\CR_618FA.tmp\\CHROME.PACKED\\chrome\\Chrome-bin\\chromedriver.exe");
+			chromeOptions.setBinary(
+					"C:\\Apps\\CR_618FA.tmp\\CHROME.PACKED\\chrome\\Chrome-bin\\sigma.exe");
+			chromeOptions.addArguments("--user-data-dir=C:\\Users\\Omkar\\AppData\\Local\\Sigma\\User Data");
+			chromeOptions.addArguments("--profile-directory=Default");
+			chromeOptions.addArguments("--disable-notifications");
+			chromeOptions.addArguments("--no-sandbox");
+			chromeOptions.addArguments("--disable-dev-shm-usage");
+			driver = new ChromeDriver(chromeOptions);
 			break;
 		case "edge":
 			driver = new EdgeDriver();
@@ -63,5 +74,9 @@ public class BaseTest {
 			driver.quit();
 			log.info("Browser closed.");
 		}
+	}
+
+	public WebDriver getDriver() {
+		return driver;
 	}
 }

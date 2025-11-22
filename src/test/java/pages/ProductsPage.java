@@ -30,7 +30,7 @@ public class ProductsPage {
 
 	// ===== Navigation to Products =====
 
-	@FindBy(xpath = "//a[@href='/products']")
+	@FindBy(css = "a[href='/products']")
 	private WebElement productsMenuLink;
 
 	/**
@@ -43,7 +43,7 @@ public class ProductsPage {
 
 	// ===== All Products Page =====
 
-	@FindBy(xpath = "//h2[@class='title text-center']")
+	@FindBy(css = "h2.title.text-center")
 	private WebElement allProductsHeading;
 
 	/**
@@ -59,7 +59,7 @@ public class ProductsPage {
 	@FindBy(css = "a[href='/product_details/1']")
 	private WebElement firstProductViewLink;
 
-	@FindBy(xpath = "//div[@class='product-information']/h2")
+	@FindBy(css = "div.product-information > h2")
 	private WebElement productNameField;
 
 	/**
@@ -70,29 +70,29 @@ public class ProductsPage {
 		return productNameField.getText();
 	}
 
-	@FindBy(xpath = "//div[@class='product-information']/p")
+	@FindBy(css = "div.product-information > p")
 	private WebElement productCategoryField;
 
-	@FindBy(xpath = "//div[@class='product-information']/span")
+	@FindBy(css = "div.product-information > span")
 	private WebElement productPriceField;
 
 	@FindBy(id = "quantity")
 	private WebElement quantityField;
 
-	@FindBy(xpath = "//div[@class='product-information']/p[2]")
+	@FindBy(css = "div.product-information > p:nth-of-type(2)")
 	private WebElement availabilityLabel;
 
-	@FindBy(xpath = "//div[@class='product-information']/p[3]")
+	@FindBy(css = "div.product-information > p:nth-of-type(3)")
 	private WebElement conditionLabel;
 
-	@FindBy(xpath = "//div[@class='product-information']/p[4]")
+	@FindBy(css = "div.product-information > p:nth-of-type(4)")
 	private WebElement brandLabel;
 
 	/**
 	 * Clicks 'View Product' on the first product.
 	 */
 	public void openFirstProductDetails() {
-		firstProductViewLink.click();
+		waitHelper.safeClick(firstProductViewLink);
 		log.info("Opened first product details.");
 	}
 
@@ -126,7 +126,7 @@ public class ProductsPage {
 	@FindBy(id = "submit_search")
 	private WebElement searchButton;
 
-	@FindBy(xpath = "//div[@class='productinfo text-center']/p")
+	@FindBy(css = "div.productinfo.text-center > p")
 	private List<WebElement> productNames;
 
 	/**
@@ -161,16 +161,16 @@ public class ProductsPage {
 
 	// ===== Categories =====
 
-	@FindBy(xpath = "//h4[@class='panel-title']/a")
+	@FindBy(css = "h4.panel-title > a")
 	private List<WebElement> categories;
 
 	@FindBy(xpath = "//h4[@class='panel-title']/a[contains(normalize-space(),'Women')]")
 	private WebElement womenCategory;
 
-	@FindBy(xpath = "(//div[@id='Women']//li)[1]")
+	@FindBy(css = "div#Women li:nth-of-type(1)")
 	private WebElement dressSubCategory;
 
-	@FindBy(xpath = "//div[@class='features_items']/h2")
+	@FindBy(css = "div.features_items > h2")
 	private WebElement categoryPageHeading;
 
 	/**
@@ -212,7 +212,7 @@ public class ProductsPage {
 
 	// ===== Brand Sidebar Filter =====
 
-	@FindBy(xpath = "//div[@class='brands_products']//a")
+	@FindBy(css = "div.brands_products a")
 	private List<WebElement> brandLinks;
 
 	/**
@@ -229,8 +229,7 @@ public class ProductsPage {
 	public void clickBrand(String brandName) {
 		for (WebElement link : brandLinks) {
 			if (link.getText().toLowerCase().contains(brandName.toLowerCase())) {
-				waitHelper.waitForClickability(link);
-				link.click();
+				waitHelper.safeClick(link);
 				log.info("Clicked brand: {}", brandName);
 				return;
 			}
@@ -251,7 +250,7 @@ public class ProductsPage {
 
 	// ===== Product Details Page Actions =====
 
-	@FindBy(xpath = "//button[contains(@class,'cart')]")
+	@FindBy(css = "button.cart")
 	private WebElement detailsAddToCartBtn;
 
 	@FindBy(xpath = "//u[text()='View Cart']")
@@ -270,8 +269,7 @@ public class ProductsPage {
 	 * Click Add to Cart button on details page.
 	 */
 	public void clickAddToCart() {
-		waitHelper.waitForClickability(detailsAddToCartBtn);
-		detailsAddToCartBtn.click();
+		waitHelper.safeClick(detailsAddToCartBtn);
 		log.info("Clicked Add to Cart on details page.");
 	}
 

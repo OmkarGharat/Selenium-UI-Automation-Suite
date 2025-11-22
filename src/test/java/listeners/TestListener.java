@@ -43,8 +43,23 @@ public class TestListener implements ITestListener {
 	@Override
 	public void onTestFailure(ITestResult result) {
 		ExtentTest test = (ExtentTest) result.getAttribute("test");
+
+		String screenshotPath = null;
+		Object testClass = result.getInstance();
+		if (testClass instanceof base.BaseTest) {
+			org.openqa.selenium.WebDriver driver = ((base.BaseTest) testClass).getDriver();
+			if (driver != null) {
+				screenshotPath = utility.ScreenshotUtil.takeScreenshot(driver, result.getName());
+			}
+		}
+
 		if (test != null) {
-			test.fail("Test failed: " + result.getThrowable());
+			if (screenshotPath != null) {
+				test.fail("Test failed: " + result.getThrowable(),
+						com.aventstack.extentreports.MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+			} else {
+				test.fail("Test failed: " + result.getThrowable());
+			}
 		}
 		reportManager.removeTest();
 		log.error("Test failed: {}", result.getName());

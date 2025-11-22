@@ -41,19 +41,19 @@ public class CheckoutPage {
 	@FindBy(xpath = "//h2[normalize-space()='Address Details']")
 	private WebElement addressDetailsHeading;
 
-	@FindBy(xpath = "//ul[@id='address_delivery']/li[4]")
+	@FindBy(css = "ul#address_delivery > li:nth-child(4)")
 	private WebElement deliveryAddressLine1;
 
-	@FindBy(xpath = "//ul[@id='address_delivery']/li[6]")
+	@FindBy(css = "ul#address_delivery > li:nth-child(6)")
 	private WebElement deliveryAddressCityStateZip;
 
-	@FindBy(xpath = "//ul[@id='address_invoice']/li")
+	@FindBy(css = "ul#address_invoice > li")
 	private List<WebElement> billingAddressItems;
 
 	@FindBy(xpath = "//a[normalize-space()='Delete Account']")
 	private WebElement deleteAccountLink;
 
-	@FindBy(xpath = "//h2[@data-qa='account-deleted']/b")
+	@FindBy(css = "h2[data-qa='account-deleted'] > b")
 	private WebElement accountDeletedHeading;
 
 	public void clickContinue() {
@@ -145,10 +145,10 @@ public class CheckoutPage {
 
 	// ===== Order Comments & Place Order =====
 
-	@FindBy(xpath = "//textarea[@name='message']")
+	@FindBy(css = "textarea[name='message']")
 	private WebElement commentTextArea;
 
-	@FindBy(xpath = "//a[@href='/payment']")
+	@FindBy(css = "a[href='/payment']")
 	private WebElement placeOrderBtn;
 
 	/**

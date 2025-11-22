@@ -29,10 +29,10 @@ public class CartPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//a[@href='/products']")
+	@FindBy(css = "a[href='/products']")
 	private WebElement productsLink;
 
-	@FindBy(xpath = "//div[@class='single-products']")
+	@FindBy(css = "div.single-products")
 	private List<WebElement> products;
 
 	@FindBy(xpath = "//button[text()='Continue Shopping']")
@@ -59,13 +59,12 @@ public class CartPage {
 			data.put("quantity", "1");
 			addedProducts.add(data);
 
-			addBtn.click();
+			waitHelper.safeClick(addBtn);
 			count++;
-			waitHelper.waitForClickability(continueShoppingButton);
 			if (count == 1) {
-				continueShoppingButton.click();
+				waitHelper.safeClick(continueShoppingButton);
 			} else {
-				viewCartButton.click();
+				waitHelper.safeClick(viewCartButton);
 			}
 		}
 	}
@@ -74,7 +73,7 @@ public class CartPage {
 		return addedProducts;
 	}
 
-	@FindBy(xpath = "//tbody/tr")
+	@FindBy(css = "tbody > tr")
 	private List<WebElement> cartRows;
 
 	public void verifyCartContents() {
@@ -85,9 +84,9 @@ public class CartPage {
 		for (int i = 0; i < cartRows.size(); i++) {
 			Map<String, String> expected = addedProducts.get(i);
 			WebElement row = cartRows.get(i);
-			String cartName = row.findElement(By.xpath("./td[@class='cart_description']/h4")).getText();
-			String cartPrice = row.findElement(By.xpath("./td[@class='cart_price']")).getText();
-			String cartQty = row.findElement(By.xpath("./td[@class='cart_quantity']")).getText();
+			String cartName = row.findElement(By.cssSelector("td.cart_description > h4")).getText();
+			String cartPrice = row.findElement(By.cssSelector("td.cart_price")).getText();
+			String cartQty = row.findElement(By.cssSelector("td.cart_quantity")).getText();
 
 			Assert.assertEquals(cartName, expected.get("name"), "Name mismatch row " + i);
 			Assert.assertEquals(cartPrice, expected.get("price"), "Price mismatch row " + i);
@@ -96,10 +95,10 @@ public class CartPage {
 		log.info("Cart contents verified.");
 	}
 
-	@FindBy(xpath = "//td[@class='cart_delete']/a")
+	@FindBy(css = "td.cart_delete > a")
 	private List<WebElement> cartDeleteButtons;
 
-	@FindBy(xpath = "//p[@class='text-center']/b")
+	@FindBy(css = "p.text-center > b")
 	private WebElement emptyCartMessage;
 
 	public void removeAllProducts() {
@@ -149,9 +148,9 @@ public class CartPage {
 	public void verifyProductQuantity(String productName, String expectedQty) {
 		waitHelper.waitForPageToLoad();
 		for (WebElement row : cartRows) {
-			String name = row.findElement(By.xpath("./td[@class='cart_description']/h4")).getText();
+			String name = row.findElement(By.cssSelector("td.cart_description > h4")).getText();
 			if (name.trim().equalsIgnoreCase(productName.trim())) {
-				String qty = row.findElement(By.xpath("./td[@class='cart_quantity']")).getText();
+				String qty = row.findElement(By.cssSelector("td.cart_quantity")).getText();
 				Assert.assertEquals(qty.trim(), expectedQty.trim(), "Quantity mismatch for product: " + productName);
 				log.info("Verified product '{}' has quantity '{}' in cart.", productName, expectedQty);
 				return;

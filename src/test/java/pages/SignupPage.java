@@ -41,10 +41,10 @@ public class SignupPage {
 
 	// ===== Basic Signup Form =====
 
-	@FindBy(xpath = "//input[@placeholder='Name']")
+	@FindBy(css = "input[placeholder='Name']")
 	private WebElement nameField;
 
-	@FindBy(xpath = "//input[@data-qa='signup-email']")
+	@FindBy(css = "input[data-qa='signup-email']")
 	private WebElement emailField;
 
 	@FindBy(xpath = "//button[normalize-space()='Signup']")
@@ -81,7 +81,7 @@ public class SignupPage {
 	@FindBy(id = "id_gender2")
 	private WebElement mrsRadioBtn;
 
-	@FindBy(xpath = "//input[@id='password']")
+	@FindBy(id = "password")
 	private WebElement passwordField;
 
 	@FindBy(id = "days")
@@ -118,10 +118,10 @@ public class SignupPage {
 
 	// ===== Address Details =====
 
-	@FindBy(xpath = "//input[@id='first_name']")
+	@FindBy(id = "first_name")
 	private WebElement firstNameField;
 
-	@FindBy(xpath = "//input[@id='last_name']")
+	@FindBy(id = "last_name")
 	private WebElement lastNameField;
 
 	@FindBy(id = "company")
@@ -133,7 +133,7 @@ public class SignupPage {
 	@FindBy(id = "city")
 	private WebElement cityField;
 
-	@FindBy(xpath = "//input[@id='state']")
+	@FindBy(id = "state")
 	private WebElement stateField;
 
 	@FindBy(id = "zipcode")
@@ -163,7 +163,7 @@ public class SignupPage {
 	@FindBy(xpath = "//button[normalize-space()='Create Account']")
 	private WebElement createAccountBtn;
 
-	@FindBy(xpath = "//h2[@data-qa='account-created']")
+	@FindBy(css = "h2[data-qa='account-created']")
 	private WebElement accountCreatedHeading;
 
 	/**
@@ -186,13 +186,13 @@ public class SignupPage {
 
 	// ===== Login Form & Error Validations =====
 
-	@FindBy(xpath = "//input[@data-qa='login-email']")
+	@FindBy(css = "input[data-qa='login-email']")
 	private WebElement loginEmailField;
 
-	@FindBy(xpath = "//input[@data-qa='login-password']")
+	@FindBy(css = "input[data-qa='login-password']")
 	private WebElement loginPasswordField;
 
-	@FindBy(xpath = "//button[@data-qa='login-button']")
+	@FindBy(css = "button[data-qa='login-button']")
 	private WebElement loginBtn;
 
 	@FindBy(xpath = "//h2[normalize-space()='Login to your account']")

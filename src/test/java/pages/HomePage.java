@@ -50,7 +50,7 @@ public class HomePage {
 	@FindBy(id = "footer")
 	private WebElement footerSection;
 
-	@FindBy(xpath = "//div[@class='single-widget']/h2")
+	@FindBy(css = "div.single-widget > h2")
 	private WebElement subscriptionLabel;
 
 	@FindBy(id = "susbscribe_email")
@@ -104,10 +104,10 @@ public class HomePage {
 
 	// ===== Navigation Header Links =====
 
-	@FindBy(xpath = "//a[@href='/test_cases']")
+	@FindBy(css = "a[href='/test_cases']")
 	private WebElement testCasesLink;
 
-	@FindBy(xpath = "//a[@href='/logout']")
+	@FindBy(css = "a[href='/logout']")
 	private WebElement logoutLink;
 
 	/**
@@ -133,10 +133,10 @@ public class HomePage {
 	@FindBy(xpath = "//h2[normalize-space()='recommended items']")
 	private WebElement recommendedItemsHeading;
 
-	@FindBy(xpath = "//div[@id='recommended-item-carousel']//div[@class='item active']//p")
+	@FindBy(css = "div#recommended-item-carousel div.item.active p")
 	private WebElement activeRecommendedProductName;
 
-	@FindBy(xpath = "//div[@id='recommended-item-carousel']//div[@class='item active']//a[contains(@class,'add-to-cart')]")
+	@FindBy(css = "div#recommended-item-carousel div.item.active a.add-to-cart")
 	private WebElement activeRecommendedAddToCartBtn;
 
 	/**

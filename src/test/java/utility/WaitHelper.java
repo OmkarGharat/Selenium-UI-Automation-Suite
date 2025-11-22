@@ -2,6 +2,7 @@ package utility;
 
 import java.time.Duration;
 
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -63,5 +64,18 @@ public class WaitHelper {
 	 */
 	public void waitForClickability(WebElement element) {
 		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	/**
+	 * Clicks an element. Falls back to JavaScript click if intercepted by an ad overlay.
+	 */
+	public void safeClick(WebElement element) {
+		try {
+			waitForClickability(element);
+			element.click();
+		} catch (ElementClickInterceptedException e) {
+			((JavascriptExecutor) driver).executeScript(
+					"arguments[0].scrollIntoView({block:'center'}); arguments[0].click();", element);
+		}
 	}
 }

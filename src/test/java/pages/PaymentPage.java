@@ -24,22 +24,22 @@ public class PaymentPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//input[@name='name_on_card']")
+	@FindBy(css = "input[name='name_on_card']")
 	private WebElement nameOnCardField;
 
-	@FindBy(xpath = "//input[@name='card_number']")
+	@FindBy(css = "input[name='card_number']")
 	private WebElement cardNumberField;
 
-	@FindBy(xpath = "//input[@name='cvc']")
+	@FindBy(css = "input[name='cvc']")
 	private WebElement cvcField;
 
-	@FindBy(xpath = "//input[@name='expiry_month']")
+	@FindBy(css = "input[name='expiry_month']")
 	private WebElement expiryMonthField;
 
-	@FindBy(xpath = "//input[@name='expiry_year']")
+	@FindBy(css = "input[name='expiry_year']")
 	private WebElement expiryYearField;
 
-	@FindBy(xpath = "//button[@id='submit']")
+	@FindBy(css = "button#submit")
 	private WebElement payConfirmBtn;
 
 	@FindBy(xpath = "//*[contains(text(),'successfully')]")

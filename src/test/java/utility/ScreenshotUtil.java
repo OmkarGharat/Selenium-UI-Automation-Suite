@@ -21,20 +21,24 @@ public class ScreenshotUtil {
 
 	/**
 	 * Takes a screenshot and saves it to the screenshots/ directory.
+	 * @return absolute path of saved screenshot, or null on failure
 	 */
-	public static void takeScreenshot(WebDriver driver, String testName) {
+	public static String takeScreenshot(WebDriver driver, String testName) {
 
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File srcFile = ts.getScreenshotAs(OutputType.FILE);
 
 		String timestamp = new SimpleDateFormat("ddMMyyyy_HHmmss").format(new Date());
 		String destPath = "./screenshots/" + testName + "_" + timestamp + ".png";
+		File destFile = new File(destPath);
 
 		try {
-			FileUtils.copyFile(srcFile, new File(destPath));
-			log.info("Screenshot saved: {}", destPath);
+			FileUtils.copyFile(srcFile, destFile);
+			log.info("Screenshot saved: {}", destFile.getAbsolutePath());
+			return destFile.getAbsolutePath();
 		} catch (IOException e) {
 			log.error("Failed to save screenshot: {}", e.getMessage());
+			return null;
 		}
 	}
 }

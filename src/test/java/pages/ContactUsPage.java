@@ -31,25 +31,25 @@ public class ContactUsPage {
 
 	// ===== Form Fields =====
 
-	@FindBy(xpath = "//input[@placeholder='Name']")
+	@FindBy(css = "input[placeholder='Name']")
 	private WebElement nameField;
 
-	@FindBy(xpath = "//input[@placeholder='Email']")
+	@FindBy(css = "input[placeholder='Email']")
 	private WebElement emailField;
 
-	@FindBy(xpath = "//input[@placeholder='Subject']")
+	@FindBy(css = "input[placeholder='Subject']")
 	private WebElement subjectField;
 
 	@FindBy(id = "message")
 	private WebElement messageField;
 
-	@FindBy(xpath = "//input[@name='upload_file']")
+	@FindBy(css = "input[name='upload_file']")
 	private WebElement fileInput;
 
-	@FindBy(xpath = "//input[@name='submit']")
+	@FindBy(css = "input[name='submit']")
 	private WebElement submitButton;
 
-	@FindBy(xpath = "//div[@class = 'status alert alert-success']")
+	@FindBy(css = "div.status.alert.alert-success")
 	private WebElement successMessage;
 
 	public void enterName(String name) {
